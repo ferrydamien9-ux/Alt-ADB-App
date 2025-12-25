@@ -7,7 +7,7 @@ source.include_exts = py,png,jpg,kv,atlas
 version = 0.1
 
 # Added Pillow (needed for Kivy images) and set versions
-requirements = python3,kivy==2.3.0,adbutils,pillow
+requirements = python3,kivy==2.3.0,adbutils,pillow,setuptools,python-libusb1
 
 # Android specific
 android.permissions = INTERNET, USB_PERMISSION, WRITE_EXTERNAL_STORAGE
