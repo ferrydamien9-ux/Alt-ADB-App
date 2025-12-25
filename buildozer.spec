@@ -1,12 +1,20 @@
 [app]
-# ... (keep your title/package name the same)
-
-# Change these specific numbers:
+title = Alt-ADB Mobile
+package.name = altadb
+package.domain = org.ferrydamien9ux
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas
+version = 0.1
+requirements = python3,kivy==2.3.0,pillow,setuptools
+orientation = portrait
+fullscreen = 1
+android.archs = arm64-v8a
 android.api = 33
 android.minapi = 21
 android.ndk = 25b
-android.ndk_path = 
-android.sdk = 33
+android.accept_sdk_license = True
+android.permissions = INTERNET, USB_PERMISSION, WRITE_EXTERNAL_STORAGE
 
-# Requirements - Keep it super slim to ensure it passes
-requirements = python3,kivy==2.3.0,pillow,setuptools
+[buildozer]
+log_level = 2
+warn_on_root = 1
