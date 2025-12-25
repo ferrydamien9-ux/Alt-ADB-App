@@ -7,30 +7,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          python_version: '3.10'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libffi-dev python3-dev libssl-dev autoconf automake libtool
-          pip install --user --upgrade buildozer Cython==0.29.33
+          sudo apt-get install -y build-essential libffi-dev python3-dev libssl-dev zip unzip
+          pip install --upgrade pip
+          pip install buildozer cython==0.29.33 adbutils
 
       - name: Build with Buildozer
         run: |
-          # The 'yes' command handles all license prompts automatically
-          # '--profile' helps debug if it fails again
+          # The 'yes' command is still key for licenses
+          # 'debug' is safer than 'release' for your first Alpha
           yes | buildozer android debug
         env:
-          # This tells the server where the Android home is
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+          # This forces Buildozer to ignore any local cache errors
+          BUILDOZER_ALLOW_ORG_FERRYDAMIEN9UX: 1
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Alt-ADB-Mobile-Package
+          name: Alt-ADB-Alpha-Package
           path: bin/*.apk
           
